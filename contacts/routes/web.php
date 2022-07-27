@@ -23,13 +23,5 @@ Route::resource('contacts', App\Http\Controllers\ContactController::class)->midd
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 //Route Hooks - Do not delete//
 	Route::view('contacts', 'livewire.contacts.index')->middleware('auth');

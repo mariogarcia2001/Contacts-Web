@@ -8,10 +8,7 @@
 						<div class="float-left">
 							<h4><i class="fab fa-laravel text-info"></i>
 							Contact Listing </h4>
-						</div>
-						<div wire:poll.60s>
-							<code><h5>{{ now()->format('H:i:s') }} UTC</h5></code>
-						</div>
+						</div
 						@if (session()->has('message'))
 						<div wire:poll.4s class="btn btn-sm btn-success" style="margin-top:0px; margin-bottom:0px;"> {{ session('message') }} </div>
 						@endif
@@ -62,8 +59,26 @@
 								</td>
 							@endforeach
 						</tbody>
-					</table>						
-					{{ $contacts->links() }}
+					</table>
+					<div style="display: flex; justify-content: center; align-items: center;">
+                        <span>Numeros de elementos por pagina: &nbsp</span>
+                        <form>
+                            <select id="pagination">
+                                <option value="3" @if($items = 3) selected @endif >3</option>
+                                <option value="6" @if($items = 6) selected @endif >6</option>
+                                <option value="12" @if($items = 12) selected @endif >12</option>
+                                <option value="15" @if($items = 15) selected @endif >15</option>
+                            </select>
+                        </form>
+                    </div> 						
+					<div style="display: flex; justify-content: center; align-items: center;">
+                	{{ $contacts->links() }} 
+                	</div>
+					<script>
+						document.getElementById('pagination').onchange = function() {
+						window.location = "{{ $contacts->url(1) }}&items=" + this.value;
+						};
+					</script>
 					</div>
 				</div>
 			</div>
